@@ -24,7 +24,6 @@ func TestToggle(t *testing.T) {
 // XXOOO
 // XOOOO
 // OOOOO
-// 
 
 func TestNumberOfLivingNeighbours(t *testing.T) {
 	ResetWorld()
@@ -43,4 +42,37 @@ func TestNumberOfLivingNeighboursForLiveCell(t *testing.T) {
   Toggle(0, 3)
   Toggle(1, 2)
   assert.Equal(t, NumberOfLivingNeighbours(0, 2), 2)
+}
+
+// OOOOO
+// OOOOO
+// XXOOO
+// XOOOO
+// OOOOO
+// Should go to
+// OOOOO
+// OOOOO
+// XXOOO
+// XXOOO
+// OOOOO
+
+func TestStep(t *testing.T) {
+	ResetWorld()
+  Populate(0, 2)
+  Populate(0, 3)
+  Populate(1, 2)
+  assert.Equal(t, Living(1, 3), false)
+  assert.Equal(t, Living(0, 0), false)
+  assert.Equal(t, Living(1, 0), false)
+  assert.Equal(t, Living(0, 1), false)
+  assert.Equal(t, Living(1, 1), false)
+  Step()
+  assert.Equal(t, Living(0, 2), true)
+  assert.Equal(t, Living(0, 3), true)
+  assert.Equal(t, Living(1, 2), true)
+  assert.Equal(t, Living(1, 3), true)
+  assert.Equal(t, Living(0, 0), false)
+  assert.Equal(t, Living(1, 0), false)
+  assert.Equal(t, Living(0, 1), false)
+  assert.Equal(t, Living(1, 1), false)
 }

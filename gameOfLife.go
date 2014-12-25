@@ -39,6 +39,26 @@ func NumberOfLivingNeighbours(x int, y int) int {
   return neighbours
 }
 
+func Step() {
+  for x := 0; x < 5; x++ {
+    for y := 0; y < 5; y++ {
+      var neighbours int = NumberOfLivingNeighbours(x, y)
+      if (Living(x, y)) {
+        if (neighbours < 2) {         // Under-population/loneliness :()
+          Toggle(x, y)
+        } else if (neighbours > 3) {  // Over-population
+          Toggle(x, y)
+        }
+        // If 2 or 3, do nowt!
+      } else { // It's dead at the mo
+        if (neighbours == 3) {
+          Populate(x, y)
+        }
+      }
+    }
+  }
+}
+
 func Living(x int, y int) bool {
   return world[x][y]
 }
