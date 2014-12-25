@@ -59,6 +59,23 @@ func Step() {
   }
 }
 
+func ToString() string {
+  var worldString string = ""
+  for y := 0; y < 5; y++ {
+    for x := 0; x < 5; x++ {
+      if (world[x][y]) {
+        worldString += "X"
+      } else {
+        worldString += "O"
+      }
+    }
+    if (y != 4) {
+      worldString += "\n"
+    }
+  }
+  return worldString
+}
+
 func Living(x int, y int) bool {
   return world[x][y]
 }

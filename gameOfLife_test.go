@@ -76,3 +76,11 @@ func TestStep(t *testing.T) {
   assert.Equal(t, Living(0, 1), false)
   assert.Equal(t, Living(1, 1), false)
 }
+
+func TestToString(t *testing.T) {
+	ResetWorld()
+  Populate(0, 2)
+  Populate(0, 3)
+  Populate(1, 2)
+  assert.Equal(t, ToString(), "OOOOO\nOOOOO\nXXOOO\nXOOOO\nOOOOO")
+}
