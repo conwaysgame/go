@@ -2,7 +2,6 @@ package gameOfLife
 
 import (
   "math"
-  // "fmt"
 )
 
 var world [5][5]bool
@@ -79,4 +78,3 @@ func ToString() string {
 func Living(x int, y int) bool {
   return world[x][y]
 }
-
