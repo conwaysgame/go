@@ -3,7 +3,16 @@ package gameOfLife
 import (
   "github.com/stretchr/testify/assert"
   "testing"
+  "fmt"
 )
+
+func TestSetWorldSize(t *testing.T) {
+  SetWorldSize(10, 10)
+  ResetWorld()
+  Populate(9, 9)
+  assert.Equal(t, Living(9, 9), true)
+  SetWorldSize(5, 5)
+}
 
 func TestPopulate(t *testing.T) {
 	ResetWorld()
@@ -78,9 +87,26 @@ func TestStep(t *testing.T) {
 }
 
 func TestToString(t *testing.T) {
-	ResetWorld()
+  ResetWorld()
   Populate(0, 2)
   Populate(0, 3)
   Populate(1, 2)
-  assert.Equal(t, ToString(), "OOOOO\nOOOOO\nXXOOO\nXOOOO\nOOOOO")
+  assert.Equal(t, T◻String(), "◻◻◻◻◻\n◻◻◻◻◻\n◼◼◻◻◻\n◼◻◻◻◻\n◻◻◻◻◻")
+}
+
+func TestGlider(t *testing.T) {
+  SetWorldSize(6, 6)
+  ResetWorld()
+  // This is a glider in it's initial form
+  Populate(2, 1)
+  Populate(3, 2)
+  Populate(1, 3)
+  Populate(2, 3)
+  Populate(3, 3)
+  Step()
+  assert.Equal(t, Living(1, 2), true)
+  assert.Equal(t, Living(3, 2), true)
+  assert.Equal(t, Living(2, 3), true)
+  assert.Equal(t, Living(3, 3), true)
+  assert.Equal(t, Living(2, 4), true)
 }
